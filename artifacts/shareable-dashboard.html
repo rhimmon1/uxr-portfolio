@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🏆 Habit Tracker Journey</title>
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #131a2e;
+      --bg-card: #1a2340;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.4);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --text-primary: #ffffff;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border: rgba(255,255,255,0.08);
+      --gradient-1: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      animation: float 20s infinite ease-in-out;
+    }
+    .bg-orb:nth-child(1) {
+      width: 400px; height: 400px;
+      background: var(--accent);
+      top: -100px; left: -100px;
+    }
+    .bg-orb:nth-child(2) {
+      width: 300px; height: 300px;
+      background: #8b5cf6;
+      bottom: -50px; right: -50px;
+      animation-delay: -5s;
+    }
+    .bg-orb:nth-child(3) {
+      width: 200px; height: 200px;
+      background: var(--success);
+      top: 50%; left: 50%;
+      animation-delay: -10s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -30px) scale(1.1); }
+    }
+    
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Header */
+    .profile-header {
+      text-align: center;
+      padding: 30px 0;
+      animation: fadeIn 0.8s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .profile-avatar {
+      width: 100px; height: 100px;
+      background: var(--gradient-1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-family: serif;
+      font-weight: 700;
+      margin: 0 auto 16px;
+      box-shadow: 0 0 40px var(--accent-glow);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 40px var(--accent-glow); }
+      50% { box-shadow: 0 0 60px var(--accent-glow), 0 0 80px rgba(139, 92, 246, 0.2); }
+    }
+    .profile-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .profile-subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    .profile-badge {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.2);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 16px 10px;
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .stat-card.highlight {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+      border-color: var(--accent);
+    }
+    .stat-icon { font-size: 1.3rem; margin-bottom: 6px; }
+    .stat-value { font-size: 1.4rem; font-weight: 700; }
+    .stat-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+    
+    /* Streak Display */
+    .streak-display {
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 40px rgba(245, 158, 11, 0.3);
+    }
+    .streak-value { font-size: 3rem; font-weight: 800; }
+    .streak-label { font-size: 1rem; opacity: 0.9; }
+    
+    /* Section Cards */
+    .section-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    /* Level Bar */
+    .level-bar-bg {
+      height: 12px;
+      background: var(--bg-secondary);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .level-bar-fill {
+      height: 100%;
+      background: var(--gradient-1);
+      border-radius: 10px;
+      transition: width 1s ease-out;
+    }
+    .level-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    
+    /* Activity Grid */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+    }
+    .activity-day {
+      aspect-ratio: 1;
+      background: var(--bg-secondary);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+    .activity-day.active { background: rgba(16, 185, 129, 0.3); }
+    .activity-day.perfect { 
+      background: linear-gradient(135deg, var(--success), #059669); 
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+    }
+    .day-label { font-size: 0.6rem; color: var(--text-muted); margin-bottom: 2px; }
+    
+    /* Badges Carousel */
+    .badges-carousel {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 10px 0;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    .badges-carousel::-webkit-scrollbar { display: none; }
+    .badge-item {
+      flex-shrink: 0;
+      width: 80px;
+      text-align: center;
+      padding: 12px 8px;
+      background: var(--bg-secondary);
+      border-radius: 16px;
+      transition: transform 0.2s;
+    }
+    .badge-item:hover { transform: scale(1.1); }
+    .badge-item.earned {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+      border: 1px solid var(--accent);
+    }
+    .badge-item.locked { opacity: 0.4; }
+    .badge-emoji { font-size: 1.8rem; margin-bottom: 6px; }
+    .badge-name { font-size: 0.65rem; color: var(--text-secondary); }
+    
+    /* Habits */
+    .habit-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .habit-row:last-child { border-bottom: none; }
+    .habit-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .habit-info { flex: 1; }
+    .habit-name { font-weight: 600; margin-bottom: 2px; }
+    .habit-streak { font-size: 0.75rem; color: var(--warning); }
+    .habit-percent { 
+      font-weight: 700; 
+      color: var(--success);
+      font-size: 0.9rem;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .footer-btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 14px 32px;
+      background: var(--gradient-1);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+      transition: transform 0.2s;
+    }
+    .footer-btn:hover { transform: translateY(-2px); }
+    
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      padding: 20px;
+    }
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 30px;
+      max-width: 320px;
+      width: 100%;
+      text-align: center;
+      transform: scale(0.9);
+      transition: transform 0.3s;
+      border: 1px solid var(--border);
+    }
+    .modal-overlay.show .modal-content {
+      transform: scale(1);
+    }
+    .modal-emoji {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    .modal-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .modal-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .modal-stats {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .modal-stat { text-align: center; }
+    .modal-stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .modal-stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .modal-close {
+      background: var(--bg-secondary);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      color: var(--text-primary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .modal-close:hover {
+      background: var(--accent);
+    }
+    .modal-tag {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 4px 12px;
+      background: rgba(59, 130, 246, 0.2);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--accent);
+    }
+    .modal-tag.locked {
+      background: rgba(100, 116, 139, 0.2);
+      color: var(--text-muted);
+    }
+    
+    /* Clickable cursor */
+    .clickable { cursor: pointer; }
+    
+    /* Loading State */
+    .loading {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Error State */
+    .error-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .error-emoji { font-size: 4rem; margin-bottom: 20px; }
+    .error-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; }
+    .error-desc { color: var(--text-secondary); margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="bg-animation">
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+  </div>
+  
+  <div class="container" id="content">
+    <div class="loading">
+      <div class="loading-spinner"></div>
+      <div>Loading profile...</div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-emoji" id="modalEmoji">🏆</div>
+      <div class="modal-title" id="modalTitle">Title</div>
+      <div class="modal-desc" id="modalDesc">Description</div>
+      <div class="modal-stats" id="modalStats"></div>
+      <div id="modalTag"></div>
+      <button class="modal-close" onclick="closeModal()">Got it!</button>
+    </div>
+  </div>
+  
+  <script>
+    // Badge definitions
+    const ALL_BADGES = [
+      { id: 'first', icon: '🌱', name: 'First Steps', desc: 'Created your first habit - the beginning of your journey!' },
+      { id: 'streak3', icon: '🔥', name: 'On Fire', desc: 'Achieved a 3-day streak! You are building momentum.' },
+      { id: 'streak7', icon: '⚡', name: 'Week Warrior', desc: 'Completed a full 7-day streak! True dedication.' },
+      { id: 'collector', icon: '📋', name: 'Habit Collector', desc: 'Created 5 habits - diversifying your growth!' },
+      { id: 'social', icon: '🤝', name: 'Social Butterfly', desc: 'Shared your progress with friends!' },
+      { id: 'earlybird', icon: '🌅', name: 'Early Bird', desc: 'Completed a habit before 6 AM. Rise and shine!' },
+      { id: 'streak14', icon: '💪', name: 'Unstoppable', desc: '14-day streak required. Keep going!' },
+      { id: 'streak30', icon: '🏆', name: 'Monthly Master', desc: '30-day streak required. The ultimate test!' },
+      { id: 'centurion', icon: '💯', name: 'Centurion', desc: 'Complete 100 total habit check-ins.' },
+      { id: 'nightowl', icon: '🦉', name: 'Night Owl', desc: 'Complete a habit after 10 PM.' },
+      { id: 'perfectweek', icon: '✨', name: 'Perfectionist', desc: 'Complete ALL habits for an entire week!' },
+      { id: 'risingstar', icon: '⭐', name: 'Rising Star', desc: 'Reach Level 5 to unlock this badge.' }
+    ];
+    
+    // Level titles
+    const LEVEL_TITLES = ['Beginner', 'Novice', 'Rising Star', 'Achiever', 'Pro', 'Expert', 'Master', 'Champion', 'Legend', 'Mythic'];
+    
+    // Modal functions
+    function showModal(emoji, title, desc, stats, tag) {
+      document.getElementById('modalEmoji').textContent = emoji;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalDesc').textContent = desc;
+      document.getElementById('modalStats').innerHTML = stats || '';
+      document.getElementById('modalTag').innerHTML = tag || '';
+      document.getElementById('modal').classList.add('show');
+    }
+    
+    function closeModal() {
+      document.getElementById('modal').classList.remove('show');
+    }
+    
+    function showBadge(emoji, name, desc, earned) {
+      const tag = earned 
+        ? '<span class="modal-tag">✅ Earned!</span>'
+        : '<span class="modal-tag locked">🔒 Not Yet Unlocked</span>';
+      showModal(emoji, name, desc, '', tag);
+    }
+    
+    function showHabit(emoji, name, streak, category, percent) {
+      const catNames = { health: '💪 Health', work: '💼 Work', personal: '🧘 Personal' };
+      const stats = `
+        <div class="modal-stat">
+          <div class="modal-stat-value">${streak}</div>
+          <div class="modal-stat-label">Day Streak</div>
+        </div>
+        <div class="modal-stat">
+          <div class="modal-stat-value">${percent}%</div>
+          <div class="modal-stat-label">This Week</div>
+        </div>
+      `;
+      const tag = '<span class="modal-tag">' + (catNames[category] || category) + '</span>';
+      showModal(emoji, name, streak >= 7 ? 'Perfect week! 🔥' : streak >= 3 ? 'Building momentum!' : 'Just getting started!', stats, tag);
+    }
+    
+    function showStat(emoji, title, value, desc) {
+      const stats = `
+        <div class="modal-stat">
+          <div class="modal-stat-value">${value}</div>
+          <div class="modal-stat-label">${title}</div>
+        </div>
+      `;
+      showModal(emoji, title, desc, stats, '');
+    }
+    
+    // Close on escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+    
+    // Parse URL and render profile
+    function init() {
+      const params = new URLSearchParams(window.location.search);
+      const shareData = params.get('share');
+      
+      if (!shareData) {
+        showError();
+        return;
+      }
+      
+      try {
+        const decoded = atob(decodeURIComponent(shareData));
+        const data = JSON.parse(decoded);
+        renderProfile(data);
+      } catch (e) {
+        console.error('Failed to parse share data:', e);
+        showError();
+      }
+    }
+    
+    function showError() {
+      document.getElementById('content').innerHTML = `
+        <div class="error-state">
+          <div class="error-emoji">🔗</div>
+          <div class="error-title">Invalid Share Link</div>
+          <div class="error-desc">This link doesn't contain valid profile data. Ask your friend to share again!</div>
+          <a href="#" class="footer-btn" onclick="window.close(); return false;">Close</a>
+        </div>
+      `;
+    }
+    
+    function renderProfile(d) {
+      const name = d.name || 'Friend';
+      const initial = name.charAt(0).toUpperCase();
+      const level = d.l || 1;
+      const levelTitle = LEVEL_TITLES[Math.min(level - 1, LEVEL_TITLES.length - 1)];
+      const points = d.p || 0;
+      const completions = d.c || 0;
+      const streak = d.s || 0;
+      const habitCount = d.h || 0;
+      const habits = d.habits || [];
+      const earnedBadges = d.earnedBadges || [];
+      const badgeCount = d.b || earnedBadges.length;
+      
+      // Calculate level progress
+      const xpPerLevel = 100;
+      const currentLevelXP = points % xpPerLevel;
+      const levelPercent = Math.round((currentLevelXP / xpPerLevel) * 100);
+      
+      // Generate HTML
+      let html = `
+        <!-- Header -->
+        <div class="profile-header">
+          <div class="profile-avatar clickable" onclick="showModal('👋', 'Hi, I\\'m ${name}!', 'Welcome to my habit tracking journey. I\\'m building better habits one day at a time!')">${initial}</div>
+          <div class="profile-title">${name}'s Journey</div>
+          <div class="profile-subtitle">Watch me build better habits every day ✨</div>
+          <div class="profile-badge clickable" onclick="showStat('🌟', '${levelTitle}', 'Level ${level}', 'Earned by reaching Level ${level}. Keep growing to unlock new titles!')">Level ${level} • ${levelTitle}</div>
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card highlight clickable" onclick="showStat('⭐', 'Total Points', '${points}', 'Points earned from completing habits. Every check-in counts!')">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-value">${points}</div>
+            <div class="stat-label">Points</div>
+          </div>
+          <div class="stat-card clickable" onclick="showStat('✅', 'Completions', '${completions}', 'Total habit check-ins completed. Keep the momentum going!')">
+            <div class="stat-icon">✅</div>
+            <div class="stat-value">${completions}</div>
+            <div class="stat-label">Done</div>
+          </div>
+          <div class="stat-card clickable" onclick="showStat('📋', 'Active Habits', '${habitCount}', 'Habits currently being tracked. More habits = more growth!')">
+            <div class="stat-icon">📋</div>
+            <div class="stat-value">${habitCount}</div>
+            <div class="stat-label">Habits</div>
+          </div>
+          <div class="stat-card clickable" onclick="showStat('🏅', 'Badges Earned', '${badgeCount}', '${badgeCount} of ${ALL_BADGES.length} badges unlocked! Tap any badge to see how to earn it.')">
+            <div class="stat-icon">🏅</div>
+            <div class="stat-value">${badgeCount}</div>
+            <div class="stat-label">Badges</div>
+          </div>
+        </div>
+        
+        <!-- Streak -->
+        <div class="streak-display clickable" onclick="showStat('🔥', 'Current Streak', '${streak} Days', '${streak >= 7 ? 'An incredible streak of consistency! You are on fire!' : streak >= 3 ? 'Building momentum! Keep it going!' : 'Just getting started - every day counts!'}')">
+          <div class="streak-value">${streak}</div>
+          <div class="streak-label">Day Streak 🔥</div>
+        </div>
+        
+        <!-- Level Progress -->
+        <div class="section-card clickable" onclick="showStat('⬆️', 'Level Progress', 'Level ${level}', '${levelPercent}% to Level ${level + 1}! Earn XP by completing habits and maintaining streaks.')">
+          <div class="section-title">⬆️ Level Progress</div>
+          <div class="level-bar-bg">
+            <div class="level-bar-fill" style="width: ${levelPercent}%"></div>
+          </div>
+          <div class="level-info">
+            <span>Level ${level}: ${levelTitle}</span>
+            <span>${currentLevelXP} / ${xpPerLevel} XP</span>
+          </div>
+        </div>
+        
+        <!-- Weekly Activity -->
+        <div class="section-card">
+          <div class="section-title">📅 This Week</div>
+          <div class="activity-grid" id="activityGrid"></div>
+        </div>
+        
+        <!-- Badges -->
+        <div class="section-card">
+          <div class="section-title">🏆 Badges (${badgeCount}/${ALL_BADGES.length})</div>
+          <div class="badges-carousel" id="badgesCarousel">
+      `;
+      
+      // Add badges
+      ALL_BADGES.forEach(badge => {
+        const earned = earnedBadges.includes(badge.id);
+        html += `
+            <div class="badge-item ${earned ? 'earned' : 'locked'} clickable" onclick="showBadge('${badge.icon}', '${badge.name}', '${badge.desc}', ${earned})">
+              <div class="badge-emoji">${badge.icon}</div>
+              <div class="badge-name">${badge.name}</div>
+            </div>
+        `;
+      });
+      
+      html += `
+          </div>
+        </div>
+      `;
+      
+      // Add habits if available
+      if (habits.length > 0) {
+        html += `
+        <div class="section-card">
+          <div class="section-title">📋 Active Habits</div>
+        `;
+        
+        const catColors = {
+          health: 'linear-gradient(135deg, #10b981, #059669)',
+          work: 'linear-gradient(135deg, #3b82f6, #2563eb)',
+          personal: 'linear-gradient(135deg, #8b5cf6, #7c3aed)'
+        };
+        const catEmojis = { health: '💪', work: '💼', personal: '🧘' };
+        
+        habits.forEach(h => {
+          const percent = Math.min(100, Math.round((h.streak / 7) * 100));
+          const bg = catColors[h.category] || catColors.personal;
+          const emoji = catEmojis[h.category] || '📋';
+          html += `
+          <div class="habit-row clickable" onclick="showHabit('${emoji}', '${h.name.replace(/'/g, "\\'")}', ${h.streak}, '${h.category}', ${percent})">
+            <div class="habit-icon" style="background: ${bg}">${emoji}</div>
+            <div class="habit-info">
+              <div class="habit-name">${h.name}</div>
+              <div class="habit-streak">🔥 ${h.streak} day streak</div>
+            </div>
+            <div class="habit-percent">${percent}%</div>
+          </div>
+          `;
+        });
+        
+        html += `</div>`;
+      }
+      
+      // Footer
+      html += `
+        <!-- Footer -->
+        <div class="footer">
+          <div>👋 Thanks for checking out my progress!</div>
+          <div style="margin-top: 8px;">Shared by ${name} via Habit Tracker</div>
+          <a href="#" class="footer-btn" onclick="event.preventDefault(); showModal('🚀', 'Start Your Journey', 'Download Habit Tracker and start building your own habits today!');">Start Your Journey</a>
+        </div>
+      `;
+      
+      document.getElementById('content').innerHTML = html;
+      document.title = `🏆 ${name}'s Habit Journey`;
+      
+      // Generate weekly activity
+      const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+      const grid = document.getElementById('activityGrid');
+      const today = new Date();
+      
+      for (let i = 6; i >= 0; i--) {
+        const dt = new Date();
+        dt.setDate(today.getDate() - i);
+        const isActive = Math.random() > 0.3;
+        const isPerfect = isActive && Math.random() > 0.5;
+        const dayName = days[dt.getDay()];
+        const dayNum = dt.getDate();
+        
+        const div = document.createElement('div');
+        div.className = 'activity-day clickable' + (isPerfect ? ' perfect' : isActive ? ' active' : '');
+        div.innerHTML = '<span class="day-label">' + dayName + '</span><span>' + dayNum + '</span>';
+        div.onclick = function() {
+          const status = isPerfect ? 'Perfect day! All habits completed! 🌟' : isActive ? 'Good progress on this day! 📈' : 'Rest day - no habits logged 😴';
+          showModal(isPerfect ? '🌟' : isActive ? '📈' : '😴', dayName + ' ' + dayNum, status, '', '');
+        };
+        grid.appendChild(div);
+      }
+      
+      // Auto-scroll badges carousel
+      const carousel = document.getElementById('badgesCarousel');
+      if (carousel) {
+        let direction = 1;
+        let scrollPos = 0;
+        
+        setInterval(function() {
+          const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+          scrollPos += direction * 0.8;
+          
+          if (scrollPos >= maxScroll) {
+            direction = -1;
+          } else if (scrollPos <= 0) {
+            direction = 1;
+          }
+          
+          carousel.scrollLeft = scrollPos;
+        }, 30);
+        
+        carousel.addEventListener('mouseenter', function() { direction = 0; });
+        carousel.addEventListener('mouseleave', function() { direction = scrollPos >= carousel.scrollWidth - carousel.clientWidth ? -1 : 1; });
+      }
+    }
+    
+    // Initialize
+    init();
+  </script>
+</body>
+</html>
