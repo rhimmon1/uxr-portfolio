@@ -1891,17 +1891,27 @@
         return basePath + this.currentShareUrl;
       },
       
-      // Open preview dashboard in new tab
+      // Open preview dashboard in new tab.
       previewDashboard() {
-        // Handle both file:// and http:// protocols
-        const currentHref = window.location.href;
-        const basePath = currentHref.substring(0, currentHref.lastIndexOf('/') + 1);
-        // The standalone dashboard page is not published with the portfolio,
-        // so opening it would 404. Explain instead of navigating.
+        if (!this.currentShareUrl && typeof data !== 'undefined') this.generateShareUrl(data);
+        const qs = '?' + ((this.currentShareUrl || '').split('?')[1] || '');
+        // In the single-file build there is no sibling file to navigate to, so
+        // the parent hands over its inlined copy and the page is built here.
+        let inlined = null;
+        try { inlined = (window.parent && window.parent.__resources && window.parent.__resources.shareDash) || null; } catch (e) {}
+        let url;
+        if (inlined) {
+          const seeded = inlined.replace('<head>', '<head><script>window.__SHARE_QS=' + JSON.stringify(qs) + ';<\/script>');
+          url = URL.createObjectURL(new Blob([seeded], { type: 'text/html' }));
+        } else {
+          const href = window.location.href;
+          url = href.substring(0, href.lastIndexOf('/') + 1) + this.currentShareUrl;
+        }
+        const w = window.open(url, '_blank', 'noopener');
         this.closeModal();
-        if (window.showWithheld) {
+        if (!w && window.showWithheld) {
           window.showWithheld('Shareable dashboard',
-            'Opens a read-only dashboard page carrying the encoded progress data, so a teammate can view your streaks without an account. That companion page is not published with this portfolio build.');
+            'A read-only dashboard carrying the encoded progress data, so a teammate can view your streaks without an account. Your browser blocked the new tab; allow pop-ups for this page and try again.');
         }
       },
       
@@ -2427,7 +2437,7 @@
     
     const Sounds = {
       ctx: null,
-      enabled: true,
+      enabled: false,
       
       init() {
         if (!this.ctx) {
@@ -2553,7 +2563,7 @@
           daysActive: 0
         },
         settings: {
-          soundEnabled: true
+          soundEnabled: false
         }
       },
       
@@ -3524,7 +3534,14 @@
     }
 
     // Initialize
-    Sounds.enabled = data.settings.soundEnabled;
+    // Sound used to default on. Anyone who visited before has that saved, so
+    // flip it off once rather than surprising them with audio again.
+    if (!data.settings.soundDefaultOff) {
+      data.settings.soundEnabled = false;
+      data.settings.soundDefaultOff = true;
+      Store.save(data);
+    }
+    Sounds.enabled = !!data.settings.soundEnabled;
     
     // Restore theme
     if (data.settings.theme === 'light') {
