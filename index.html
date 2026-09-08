@@ -334,8 +334,8 @@ html,body{margin:0;padding:0;background:#161826}
             <div onClick="{{ navPrevGo }}" onMouseEnter="{{ navEnterPrev }}" onMouseLeave="{{ navLeave }}" style="{{ gutterPrevStyle }}" aria-hidden="true"></div>
             <div onClick="{{ navNextGo }}" onMouseEnter="{{ navEnterNext }}" onMouseLeave="{{ navLeave }}" style="{{ gutterNextStyle }}" aria-hidden="true"></div>
             <div style="{{ arrowHintStyle }}" aria-hidden="true"><span style="font-family:var(--h);color:var(--tx-2)">← →</span><span>move between pages</span></div>
-            <div onMouseEnter="{{ navEnterPrev }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;left:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px"><a href="#" onClick="{{ goWorkflow }}" data-nav="prev" aria-label="Previous: AI surfaces. Humans review." style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">‹</a><span style="{{ navPrevLabelStyle }}"><span style="{{ navPrevTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Previous</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">AI surfaces. Humans review.</span></span></div>
-      <div onMouseEnter="{{ navEnterNext }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;right:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px;flex-direction:row-reverse"><a href="#" onClick="{{ goPulse }}" data-nav="next" aria-label="Next: Four deliverables. One interactive artifact." style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">›</a><span style="{{ navNextLabelStyle }}"><span style="{{ navNextTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Next</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">Four deliverables. One interactive artifact.</span></span></div>
+            <div onMouseEnter="{{ navEnterPrev }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;left:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px;opacity:{{ sideNavOpacity }};transition:opacity .45s cubic-bezier(.22,.7,.25,1)"><a href="#" onClick="{{ goWorkflow }}" data-nav="prev" aria-label="Previous: AI surfaces. Humans review." style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">‹</a><span style="{{ navPrevLabelStyle }}"><span style="{{ navPrevTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Previous</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">AI surfaces. Humans review.</span></span></div>
+      <div onMouseEnter="{{ navEnterNext }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;right:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px;flex-direction:row-reverse;opacity:{{ sideNavOpacity }};transition:opacity .45s cubic-bezier(.22,.7,.25,1)"><a href="#" onClick="{{ goPulse }}" data-nav="next" aria-label="Next: Four deliverables. One interactive artifact." style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">›</a><span style="{{ navNextLabelStyle }}"><span style="{{ navNextTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Next</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">Four deliverables. One interactive artifact.</span></span></div>
 <nav style="display:{{ bottomNavDisplay }};justify-content:space-between;gap:16px;margin-top:clamp(56px,7vw,88px);padding-top:24px;border-top:1px solid var(--edge)">
         <a href="#" onClick="{{ goWorkflow }}" style="text-decoration:none;max-width:44%">
           <span style="display:block;font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-3)">Previous</span>
@@ -483,8 +483,8 @@ html,body{margin:0;padding:0;background:#161826}
             <div onClick="{{ navPrevGo }}" onMouseEnter="{{ navEnterPrev }}" onMouseLeave="{{ navLeave }}" style="{{ gutterPrevStyle }}" aria-hidden="true"></div>
             <div onClick="{{ navNextGo }}" onMouseEnter="{{ navEnterNext }}" onMouseLeave="{{ navLeave }}" style="{{ gutterNextStyle }}" aria-hidden="true"></div>
             <div style="{{ arrowHintStyle }}" aria-hidden="true"><span style="font-family:var(--h);color:var(--tx-2)">← →</span><span>move between pages</span></div>
-            <div onMouseEnter="{{ navEnterPrev }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;left:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px"><a href="#" onClick="{{ artifactPrev }}" data-nav="prev" aria-label="Previous: {{ artifactPrevName }}" style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">‹</a><span style="{{ navPrevLabelStyle }}"><span style="{{ navPrevTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Previous</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">{{ artifactPrevName }}</span></span></div>
-      <div onMouseEnter="{{ navEnterNext }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;right:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px;flex-direction:row-reverse"><a href="#" onClick="{{ artifactNext }}" data-nav="next" aria-label="Next: {{ artifactNextName }}" style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">›</a><span style="{{ navNextLabelStyle }}"><span style="{{ navNextTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Next</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">{{ artifactNextName }}</span></span></div>
+            <div onMouseEnter="{{ navEnterPrev }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;left:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px;opacity:{{ sideNavOpacity }};transition:opacity .45s cubic-bezier(.22,.7,.25,1)"><a href="#" onClick="{{ artifactPrev }}" data-nav="prev" aria-label="Previous: {{ artifactPrevName }}" style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">‹</a><span style="{{ navPrevLabelStyle }}"><span style="{{ navPrevTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Previous</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">{{ artifactPrevName }}</span></span></div>
+      <div onMouseEnter="{{ navEnterNext }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;right:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px;flex-direction:row-reverse;opacity:{{ sideNavOpacity }};transition:opacity .45s cubic-bezier(.22,.7,.25,1)"><a href="#" onClick="{{ artifactNext }}" data-nav="next" aria-label="Next: {{ artifactNextName }}" style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">›</a><span style="{{ navNextLabelStyle }}"><span style="{{ navNextTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Next</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">{{ artifactNextName }}</span></span></div>
 <nav style="display:{{ bottomNavDisplay }};justify-content:space-between;gap:16px;margin-top:clamp(56px,7vw,88px);padding-top:24px;border-top:1px solid var(--edge)">
         <a href="#" onClick="{{ artifactPrev }}" style="text-decoration:none;max-width:44%">
           <span style="display:block;font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-3)">Previous</span>
@@ -593,8 +593,8 @@ html,body{margin:0;padding:0;background:#161826}
                     <div onClick="{{ navPrevGo }}" onMouseEnter="{{ navEnterPrev }}" onMouseLeave="{{ navLeave }}" style="{{ gutterPrevStyle }}" aria-hidden="true"></div>
             <div onClick="{{ navNextGo }}" onMouseEnter="{{ navEnterNext }}" onMouseLeave="{{ navLeave }}" style="{{ gutterNextStyle }}" aria-hidden="true"></div>
             <div style="{{ arrowHintStyle }}" aria-hidden="true"><span style="font-family:var(--h);color:var(--tx-2)">← →</span><span>move between pages</span></div>
-            <div onMouseEnter="{{ navEnterPrev }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;left:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px"><a href="#" onClick="{{ goPulse }}" data-nav="prev" aria-label="Previous: Four deliverables. One interactive artifact." style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">‹</a><span style="{{ navPrevLabelStyle }}"><span style="{{ navPrevTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Previous</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">Four deliverables. One interactive artifact.</span></span></div>
-          <div onMouseEnter="{{ navEnterNext }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;right:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px;flex-direction:row-reverse"><a href="#" onClick="{{ goModeler }}" data-nav="next" aria-label="Next: Measured evidence. Modeled direction." style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">›</a><span style="{{ navNextLabelStyle }}"><span style="{{ navNextTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Next</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">Measured evidence. Modeled direction.</span></span></div>
+            <div onMouseEnter="{{ navEnterPrev }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;left:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px;opacity:{{ sideNavOpacity }};transition:opacity .45s cubic-bezier(.22,.7,.25,1)"><a href="#" onClick="{{ goPulse }}" data-nav="prev" aria-label="Previous: Four deliverables. One interactive artifact." style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">‹</a><span style="{{ navPrevLabelStyle }}"><span style="{{ navPrevTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Previous</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">Four deliverables. One interactive artifact.</span></span></div>
+          <div onMouseEnter="{{ navEnterNext }}" onMouseLeave="{{ navLeave }}" style="position:fixed;pointer-events:none;top:50%;transform:translateY(-50%);z-index:45;right:{{ sideNavInset }};display:{{ sideNavDisplay }};align-items:center;gap:12px;flex-direction:row-reverse;opacity:{{ sideNavOpacity }};transition:opacity .45s cubic-bezier(.22,.7,.25,1)"><a href="#" onClick="{{ goModeler }}" data-nav="next" aria-label="Next: Measured evidence. Modeled direction." style="display:flex;align-items:center;justify-content:center;pointer-events:auto;flex:none;width:{{ navBtnSize }};height:{{ navBtnSize }};border-radius:50%;text-decoration:none;border:1px solid var(--edge);background:rgba(18,20,31,.72);backdrop-filter:blur(10px);font-family:var(--h);font-size:{{ navBtnGlyph }};line-height:1;color:var(--tx-2);transition:border-color .18s,color .18s,background .18s" style-hover="border-color:var(--acc-line);color:var(--tx);background:rgba(145,132,217,.16)">›</a><span style="{{ navNextLabelStyle }}"><span style="{{ navNextTailStyle }}"></span><span style="display:block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)">Next</span><span style="display:block;margin-top:5px;font-family:var(--h);font-weight:500;font-size:13.5px;line-height:1.3;letter-spacing:-.01em;color:var(--tx);text-wrap:balance">Measured evidence. Modeled direction.</span></span></div>
 <nav style="display:{{ bottomNavDisplay }};justify-content:space-between;gap:16px;margin-top:clamp(56px,7vw,88px);padding-top:24px;border-top:1px solid var(--edge)">
             <a href="#" onClick="{{ goPulse }}" style="text-decoration:none;max-width:44%">
               <span style="display:block;font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-3)">Previous</span>
@@ -616,7 +616,7 @@ html,body{margin:0;padding:0;background:#161826}
     <main style="max-width:1180px;margin:0 auto;padding:var(--ws2) clamp(24px,5vw,64px) clamp(64px,8vw,104px);position:relative">
       <div style="{{ resumeRailStyle }}">
         <a href="#" onClick="{{ goHome }}" style="text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(233,233,237,.55);position:relative" style-before="content:'';position:absolute;inset:-15px -14px">← All work</a>
-        <a href="mailto:rhimmon@me.com" style="text-decoration:none;font-size:12px;font-weight:500;color:var(--acc);padding:9px 14px;border:1px solid var(--acc-line);border-radius:8px;white-space:nowrap">Request a PDF copy</a>
+        <a href="{{ resumePdfSrc }}" download="Rhimmon-Simchy-Gross-Resume.pdf" style="text-decoration:none;font-size:12px;font-weight:500;color:var(--acc);padding:9px 14px;border:1px solid var(--acc-line);border-radius:8px;white-space:nowrap">Download PDF</a>
       </div>
 
       <div style="{{ resumeSheetWrapStyle }}">
@@ -624,60 +624,103 @@ html,body{margin:0;padding:0;background:#161826}
           <div style="{{ resumeScalerStyle }}">
           <div style="{{ resumeFitStyle }}">
   <section ref="{{ resumePageRef }}" style="position:relative;box-sizing:border-box;width:816px;height:1056px;flex:none;background:#fff;color:#000;font-family:Helvetica,Arial,sans-serif;font-size:12.667px">
-    <h1 style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;top:50.95px;font-size:24px;line-height:27.6px;font-weight:700;text-align:center">Rhimmon Simchy-Gross, PhD</h1>
-    <p style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:15.87px;top:80.40px;text-align:center">Bixby, OK | +1 (315) 481-1422 | <a href="mailto:rhimmon@me.com" style="color:#0563c1;text-decoration:none">rhimmon@me.com</a><br><a href="https://rhimmon.com" target="_blank" rel="noopener" style="color:#0563c1;text-decoration:none;font-weight:700">rhimmon.com</a> | <a href="https://www.linkedin.com/in/rhimmon-simchy-gross" target="_blank" rel="noopener" style="color:#0563c1;text-decoration:none">linkedin.com/in/rhimmon-simchy-gross</a></p>
-
-    <h2 style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:14.667px;line-height:16.87px;font-weight:700;top:133.08px">SUMMARY</h2>
-    <div style="position:absolute;left:57.73px;width:700.67px;height:1px;background:#000;top:152.94px"></div>
-    <p style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:15.87px;top:159.33px"><span style="font-weight:700">13+ years behavioral research</span>; <span style="font-weight:700">5 years product research</span>. Tied to <span style="font-weight:700">$7M+ reported revenue</span>, <span style="font-weight:700">1M+ clients</span>, <span style="font-weight:700">142 countries</span>.<br>Responsible, scalable human-AI research systems: <span style="font-weight:700">5x faster synthesis, 2.3x higher throughput, claim-level traceability.</span></p>
-
-    <h2 style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:14.667px;line-height:16.87px;font-weight:700;top:212.02px">EXPERIENCE</h2>
-    <div style="position:absolute;left:57.73px;width:700.67px;height:1px;background:#000;top:231.88px"></div>
-
-    <p style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:14.53px;top:248.42px"><span style="font-weight:700">UX Researcher, ADP</span><br>Remote (Bixby, OK) | 08/2022 - Present</p>
-    <div style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:14.53px;top:280.12px">
-      <p style="margin:0;padding-left:21.14px;text-indent:-21.14px"><span style="display:inline-block;width:21.14px;text-indent:0">&#8226;</span><span style="font-weight:700">Lead mixed-methods research end-to-end</span> (28 interviews, 4 research reviews, 3 surveys, 3 workshops, 2 concept<br>tests, 2 competitive analyses), shaping product strategy by reframing enterprise adoption around existing workflows.</p>
-      <p style="margin:0;padding-left:21.14px;text-indent:-21.14px"><span style="display:inline-block;width:21.14px;text-indent:0">&#8226;</span><span style="font-weight:700">Translate research into executive decisions</span>, earning recognition from VP of UX for storytelling and audience<br>engagement, plus 4 consecutive requests to present my narratives to Sales, Talent, a VP of Software Engineering, and<br>an SVP of Product Development.</p>
-      <p style="margin:0;padding-left:21.14px;text-indent:-21.14px"><span style="display:inline-block;width:21.14px;text-indent:0">&#8226;</span><span style="font-weight:700">Advance AI product direction across 7 rounds in 2 programs,</span> shifting an AI feature beyond task completion toward<br>predictable, recoverable behavior; recommendations adopted into an experience now in pilot development.</p>
-      <p style="margin:0;padding-left:21.14px;text-indent:-21.14px"><span style="display:inline-block;width:21.14px;text-indent:0">&#8226;</span><span style="font-weight:700">Architect and prototype human-AI research systems</span> across 1K+ studies: source-grounded retrieval, model/tool<br>routing, verification, automated evaluation, human review gates, traceability, and researcher-owned recommendations.<br>Synthesis takes ~1/5 the time, every claim traces to source, and throughput rose from 3 to 7 initiatives per quarter.</p>
-      <p style="margin:0;padding-left:21.14px;text-indent:-21.14px"><span style="display:inline-block;width:21.14px;text-indent:0">&#8226;</span><span style="font-weight:700">Pioneered the team&rsquo;s responsible AI-for-research practice.</span> Authored the analysis framework &amp; source-verification<br>standard with human-review guardrails; taught it through hands-on labs; Dovetail prompts were adapted into official<br>research templates and showcased org-wide, reinforcing human judgment, traceability, and decision ownership.</p>
-      <p style="margin:0;padding-left:21.14px;text-indent:-21.14px"><span style="display:inline-block;width:21.14px;text-indent:0">&#8226;</span><span style="font-weight:700">Scale AI practice across teams</span>: Research Ops recruited me to pilot Dovetail&rsquo;s agentic capability and solicited my AI<br>infrastructure recommendations; a Research Director partnered with me to build a process diagram presented to senior<br>leaders; a Design Director sent her researcher to learn my method; and a Lead Researcher brought me in to co-build.</p>
-      <p style="margin:0;padding-left:21.14px;text-indent:-21.14px"><span style="display:inline-block;width:21.14px;text-indent:0">&#8226;</span><span style="font-weight:700">Build 6 AI-enabled prototypes, tools, and interactive experiences</span> spanning recruitment automation &amp; fraud-risk<br>workflows, decision-support modeling, explorable research deliverables, and 0-to-1 experience prototyping.</p>
-    </div>
-
-    <p style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:14.53px;top:557.76px"><span style="font-weight:700">User Researcher, TCM Creative: Moore Neuro-Fundraising Lab</span><br>Tulsa, OK | 08/2021 - 05/2022</p>
-    <div style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:14.53px;top:589.45px">
-      <p style="margin:0;padding-left:21.14px;text-indent:-21.14px"><span style="display:inline-block;width:21.14px;text-indent:0">&#8226;</span><span style="font-weight:700">Drove end-to-end primary research</span> across 11 mixed-methods studies, 4 surveys, and 100+ interviews, guiding product<br>decisions across 21 campaigns for 8 nonprofit clients; ad revisions cut cost per call 55%.</p>
-    </div>
-
-    <p style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:14.53px;top:634.56px"><span style="font-weight:700">Postdoctoral Researcher and Assistant Professor, Missouri Western State University</span><br>St. Joseph, MO | 08/2019 - 07/2021</p>
-    <div style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:14.53px;top:666.25px">
-      <p style="margin:0;padding-left:21.14px;text-indent:-21.14px"><span style="display:inline-block;width:21.14px;text-indent:0">&#8226;</span><span style="font-weight:700">Contributed to large-scale quantitative synthesis</span> by aggregating 100+ datasets with 30 scientists across 7 countries.</p>
-    </div>
-
-    <p style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:14.53px;top:696.82px"><span style="font-weight:700">Graduate Researcher and Instructor, University of Arkansas</span><br>Fayetteville, AR | 08/2013 - 08/2019</p>
-    <div style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:14.53px;top:728.52px">
-      <p style="margin:0;padding-left:21.14px;text-indent:-21.14px"><span style="display:inline-block;width:21.14px;text-indent:0">&#8226;</span><span style="font-weight:700">Conducted 40+ NSF-funded studies,</span> 9 articles, 10 global talks. Research featured in <span style="font-weight:700">Netflix&rsquo;s</span> <em>Explained: Music</em>.</p>
-      <p style="margin:0;padding-left:21.14px;text-indent:-21.14px"><span style="display:inline-block;width:21.14px;text-indent:0">&#8226;</span><span style="font-weight:700">Taught Introduction to Statistics for Psychologists</span> and General Psychology as instructor of record.</p>
-    </div>
-
-    <h2 style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:14.667px;line-height:16.87px;font-weight:700;top:779.08px">SKILLS</h2>
-    <div style="position:absolute;left:57.73px;width:700.67px;height:1px;background:#000;top:798.89px"></div>
-    <div style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:19.6px;top:803.54px">
-      <p style="margin:0"><span style="font-weight:700">Methods:</span> Mixed-methods, qualitative and quantitative research, interviews, surveys, workshops, experimental design</p>
-      <p style="margin:0"><span style="font-weight:700">Research:</span> Generative &amp; evaluative research, concept &amp; usability tests, competitive analyses, recruitment &amp; screening</p>
-      <p style="margin:0"><span style="font-weight:700">Statistics:</span> Regression, ANOVA, t-tests, multi-level linear mixed modeling, inferential statistics, R, SPSS</p>
-      <p style="margin:0"><span style="font-weight:700">Research Tools:</span> Figma, Miro, Mural, Dovetail, Maze, Qualtrics, SurveyMonkey, User Interviews, UserTesting, Pendo</p>
-      <p style="margin:0"><span style="font-weight:700">Agentic AI Tools:</span> Claude Code, Codex, GitHub Copilot, Microsoft Copilot, VS Code, Python (AI-assisted)</p>
-    </div>
-
-    <h2 style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:14.667px;line-height:16.87px;font-weight:700;top:917.85px">EDUCATION</h2>
-    <div style="position:absolute;left:57.73px;width:700.67px;height:1px;background:#000;top:937.66px"></div>
-    <div style="position:absolute;left:57.73px;width:700.67px;box-sizing:border-box;margin:0;font-size:12.667px;line-height:19.6px;top:942.29px">
-      <p style="margin:0"><span style="font-weight:700">PhD,</span> Experimental Psychology | University of Arkansas, Fayetteville, AR | 05/2019</p>
-      <p style="margin:0"><span style="font-weight:700">MA,</span> Experimental Psychology | University of Arkansas, Fayetteville, AR | 05/2016</p>
-      <p style="margin:0"><span style="font-weight:700">BM,</span> Psychology and Piano Performance | State University of New York at Potsdam, Potsdam, NY | 05/2013</p>
-    </div>
+    <div style="position:absolute;left:57.60px;top:136.47px;width:700.73px;height:1px;background:#000"></div>
+    <div style="position:absolute;left:57.60px;top:215.4px;width:700.73px;height:1px;background:#000"></div>
+    <div style="position:absolute;left:57.60px;top:814.6px;width:700.73px;height:1px;background:#000"></div>
+    <div style="position:absolute;left:57.60px;top:956.07px;width:700.73px;height:1px;background:#000"></div>
+    <span style="position:absolute;left:237.47px;top:37.19px;line-height:1;white-space:nowrap;font-size:24px;font-weight:700" data-base="57" data-fs="24">Rhimmon Simchy-Gross, PhD</span>
+    <span style="position:absolute;left:263.8px;top:65.99px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="76.6" data-fs="12.667">Bixby, OK | +1 (315) 481-1422 |</span>
+    <span style="position:absolute;left:445.33px;top:65.99px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="76.6" data-fs="12.667"><a href="mailto:rhimmon@me.com" style="color:#0563c1;text-decoration:none">rhimmon@me.com</a></span>
+    <span style="position:absolute;left:253.4px;top:81.86px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="92.47" data-fs="12.667"><a href="https://rhimmon.com" target="_blank" rel="noopener" style="color:#0563c1;text-decoration:none">rhimmon.com</a></span>
+    <span style="position:absolute;left:340.64px;top:81.86px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="92.47" data-fs="12.667">|</span>
+    <span style="position:absolute;left:347.47px;top:81.86px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="92.47" data-fs="12.667"><a href="https://www.linkedin.com/in/rhimmon-simchy-gross" target="_blank" rel="noopener" style="color:#0563c1;text-decoration:none">linkedin.com/in/rhimmon-simchy-gross</a></span>
+    <span style="position:absolute;left:57.73px;top:118.17px;line-height:1;white-space:nowrap;font-size:14.667px;font-weight:700" data-base="130.2" data-fs="14.667">SUMMARY</span>
+    <span style="position:absolute;left:57.73px;top:144.93px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="155.53" data-fs="12.667">13+ years behavioral research</span>
+    <span style="position:absolute;left:239.07px;top:144.93px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="155.53" data-fs="12.667">;</span>
+    <span style="position:absolute;left:246.13px;top:144.93px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="155.53" data-fs="12.667">5 years product research</span>
+    <span style="position:absolute;left:396.8px;top:144.93px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="155.53" data-fs="12.667">. Tied to</span>
+    <span style="position:absolute;left:446.07px;top:144.93px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="155.53" data-fs="12.667">$7M+ reported revenue</span>
+    <span style="position:absolute;left:585.13px;top:144.93px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="155.53" data-fs="12.667">,</span>
+    <span style="position:absolute;left:592.2px;top:144.93px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="155.53" data-fs="12.667">1M+ clients</span>
+    <span style="position:absolute;left:660.87px;top:144.93px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="155.53" data-fs="12.667">,</span>
+    <span style="position:absolute;left:667.93px;top:144.93px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="155.53" data-fs="12.667">142 countries</span>
+    <span style="position:absolute;left:749.6px;top:144.93px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="155.53" data-fs="12.667">.</span>
+    <span style="position:absolute;left:57.73px;top:160.79px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="171.4" data-fs="12.667">Build responsible, scalable human-AI research systems: ~</span>
+    <span style="position:absolute;left:383.15px;top:160.79px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="171.4" data-fs="12.667">5x faster synthesis, 2.3x higher output, traceable claims.</span>
+    <span style="position:absolute;left:57.73px;top:197.1px;line-height:1;white-space:nowrap;font-size:14.667px;font-weight:700" data-base="209.13" data-fs="14.667">EXPERIENCE</span>
+    <span style="position:absolute;left:57.73px;top:223.86px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="234.47" data-fs="12.667">UX Researcher, ADP</span>
+    <span style="position:absolute;left:57.73px;top:238.39px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="249" data-fs="12.667">Remote (Bixby, OK) | 08/2022 - Present</span>
+    <span style="position:absolute;left:57.73px;top:255.59px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="266.2" data-fs="12.667">•</span>
+    <span style="position:absolute;left:78.87px;top:255.59px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="266.2" data-fs="12.667">Lead mixed-methods research end-to-end</span>
+    <span style="position:absolute;left:334.38px;top:255.59px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="266.2" data-fs="12.667">(28 interviews, 4 research reviews, 3 surveys, 3 workshops, 2 concept</span>
+    <span style="position:absolute;left:78.87px;top:270.13px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="280.73" data-fs="12.667">tests, 2 competitive analyses), shaping product strategy by reframing enterprise adoption around existing workflows.</span>
+    <span style="position:absolute;left:57.73px;top:292.66px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="303.27" data-fs="12.667">•</span>
+    <span style="position:absolute;left:78.87px;top:292.66px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="303.27" data-fs="12.667">Translate research into executive decisions</span>
+    <span style="position:absolute;left:341.47px;top:292.66px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="303.27" data-fs="12.667">, earning VP of UX recognition for storytelling, plus 4 consecutive requests</span>
+    <span style="position:absolute;left:78.87px;top:307.19px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="317.8" data-fs="12.667">to present my narratives to Sales, Talent, a VP of Software Engineering, and an SVP of Product Development.</span>
+    <span style="position:absolute;left:57.73px;top:329.73px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="340.33" data-fs="12.667">•</span>
+    <span style="position:absolute;left:78.87px;top:329.73px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="340.33" data-fs="12.667">Advance AI product direction across 7 rounds in 2 programs,</span>
+    <span style="position:absolute;left:451.18px;top:329.73px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="340.33" data-fs="12.667">shifting an AI feature beyond task completion toward</span>
+    <span style="position:absolute;left:78.87px;top:344.26px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="354.87" data-fs="12.667">predictable, recoverable behavior; recommendations adopted into an experience now in pilot development.</span>
+    <span style="position:absolute;left:57.73px;top:366.79px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="377.4" data-fs="12.667">•</span>
+    <span style="position:absolute;left:78.87px;top:366.79px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="377.4" data-fs="12.667">Architect and prototype human-AI research systems</span>
+    <span style="position:absolute;left:397.64px;top:366.79px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="377.4" data-fs="12.667">across our 1K+ studies: source-grounded retrieval, model/tool</span>
+    <span style="position:absolute;left:78.87px;top:381.33px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="391.93" data-fs="12.667">routing, verification, automated evaluation, human review gates, traceability, and researcher-owned recommendations.</span>
+    <span style="position:absolute;left:78.87px;top:395.86px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="406.47" data-fs="12.667">Synthesis takes ~1/5 the time, every claim traces to source, and throughput rose from 3 to 7 initiatives per quarter.</span>
+    <span style="position:absolute;left:57.73px;top:418.39px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="429" data-fs="12.667">•</span>
+    <span style="position:absolute;left:78.87px;top:418.39px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="429" data-fs="12.667">Build 7 AI-enabled prototypes, tools, and interactive experiences</span>
+    <span style="position:absolute;left:472.31px;top:418.39px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="429" data-fs="12.667">spanning recruitment automation &amp; fraud-risk</span>
+    <span style="position:absolute;left:78.87px;top:432.93px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="443.53" data-fs="12.667">workflows, decision-support modeling, explorable research deliverables, and 0-to-1 experience prototyping.</span>
+    <span style="position:absolute;left:57.73px;top:455.46px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="466.07" data-fs="12.667">•</span>
+    <span style="position:absolute;left:78.87px;top:455.46px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="466.07" data-fs="12.667">Pioneer the team's responsible AI-for-research practice:</span>
+    <span style="position:absolute;left:419.47px;top:455.46px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="466.07" data-fs="12.667">authored the analysis framework &amp; source-verification</span>
+    <span style="position:absolute;left:78.87px;top:469.99px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="480.6" data-fs="12.667">standard with human-review guardrails; taught it through hands-on labs; Dovetail prompts were adapted into official</span>
+    <span style="position:absolute;left:78.87px;top:484.53px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="495.13" data-fs="12.667">research templates and showcased org-wide, reinforcing human judgment, traceability, and decision ownership.</span>
+    <span style="position:absolute;left:57.73px;top:507.06px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="517.67" data-fs="12.667">•</span>
+    <span style="position:absolute;left:78.87px;top:507.06px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="517.67" data-fs="12.667">Scale AI practice across teams</span>
+    <span style="position:absolute;left:264.73px;top:507.06px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="517.67" data-fs="12.667">: Research Ops recruited me to pilot Dovetail's agentic capability and solicited my AI</span>
+    <span style="position:absolute;left:78.87px;top:521.59px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="532.2" data-fs="12.667">infrastructure recommendations; a Research Director partnered with me to build a process diagram presented to senior</span>
+    <span style="position:absolute;left:78.87px;top:536.13px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="546.73" data-fs="12.667">leaders; a Design Director sent her researcher to learn my method; and a Lead Researcher brought me in to co-build.</span>
+    <span style="position:absolute;left:57.73px;top:566.66px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="577.27" data-fs="12.667">User Researcher, TCM Creative: Moore Neuro-Fundraising Lab</span>
+    <span style="position:absolute;left:57.73px;top:581.19px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="591.8" data-fs="12.667">Tulsa, OK | 08/2021 - 05/2022</span>
+    <span style="position:absolute;left:57.73px;top:598.39px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="609" data-fs="12.667">•</span>
+    <span style="position:absolute;left:78.87px;top:598.39px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="609" data-fs="12.667">Drove end-to-end primary research</span>
+    <span style="position:absolute;left:293.58px;top:598.39px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="609" data-fs="12.667">across 11 mixed-methods studies, 4 surveys, and 100+ interviews, guiding product</span>
+    <span style="position:absolute;left:78.87px;top:612.93px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="623.53" data-fs="12.667">decisions across 21 campaigns for 8 nonprofit clients; ad revisions cut cost per call 55%.</span>
+    <span style="position:absolute;left:57.73px;top:643.46px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="654.07" data-fs="12.667">Postdoctoral Researcher and Assistant Professor, Missouri Western State University</span>
+    <span style="position:absolute;left:57.73px;top:657.99px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="668.6" data-fs="12.667">St. Joseph, MO | 08/2019 - 07/2021</span>
+    <span style="position:absolute;left:57.73px;top:675.19px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="685.8" data-fs="12.667">•</span>
+    <span style="position:absolute;left:78.87px;top:675.19px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="685.8" data-fs="12.667">Contributed to large-scale quantitative synthesis</span>
+    <span style="position:absolute;left:375.84px;top:675.19px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="685.8" data-fs="12.667">by aggregating 100+ datasets with 30 scientists across 7 countries.</span>
+    <span style="position:absolute;left:57.73px;top:705.73px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="716.33" data-fs="12.667">Graduate Researcher and Instructor, University of Arkansas</span>
+    <span style="position:absolute;left:57.73px;top:720.26px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="730.87" data-fs="12.667">Fayetteville, AR | 08/2013 - 08/2019</span>
+    <span style="position:absolute;left:57.73px;top:737.46px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="748.07" data-fs="12.667">•</span>
+    <span style="position:absolute;left:78.87px;top:737.46px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="748.07" data-fs="12.667">Conducted 40+ NSF-funded studies,</span>
+    <span style="position:absolute;left:300.18px;top:737.46px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="748.07" data-fs="12.667">9 articles, 10 global talks. Research featured in</span>
+    <span style="position:absolute;left:566.83px;top:737.46px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="748.07" data-fs="12.667">Netflix's</span>
+    <span style="position:absolute;left:619.32px;top:737.46px;line-height:1;white-space:nowrap;font-size:12.667px;font-style:italic" data-base="748.07" data-fs="12.667">Explained: Music</span>
+    <span style="position:absolute;left:722.79px;top:737.46px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="748.07" data-fs="12.667">.</span>
+    <span style="position:absolute;left:57.73px;top:759.99px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="770.6" data-fs="12.667">•</span>
+    <span style="position:absolute;left:78.87px;top:759.99px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="770.6" data-fs="12.667">Taught Introduction to Statistics for Psychologists</span>
+    <span style="position:absolute;left:386.76px;top:759.99px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="770.6" data-fs="12.667">as instructor of record, a required course in inferential statistics.</span>
+    <span style="position:absolute;left:57.73px;top:796.3px;line-height:1;white-space:nowrap;font-size:14.667px;font-weight:700" data-base="808.33" data-fs="14.667">SKILLS</span>
+    <span style="position:absolute;left:57.73px;top:823.06px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="833.67" data-fs="12.667">Methods:</span>
+    <span style="position:absolute;left:117.53px;top:823.06px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="833.67" data-fs="12.667">Mixed-methods, qualitative and quantitative research, interviews, survey design, workshops, experimental design</span>
+    <span style="position:absolute;left:57.73px;top:842.66px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="853.27" data-fs="12.667">Research:</span>
+    <span style="position:absolute;left:122.53px;top:842.66px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="853.27" data-fs="12.667">Generative &amp; evaluative research, concept &amp; usability tests, competitive analyses, recruitment &amp; screening</span>
+    <span style="position:absolute;left:57.73px;top:862.26px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="872.87" data-fs="12.667">Statistics:</span>
+    <span style="position:absolute;left:121.8px;top:862.26px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="872.87" data-fs="12.667">Regression, ANOVA, t-tests, multi-level linear mixed modeling, response effects, data visualizations, R, SPSS</span>
+    <span style="position:absolute;left:57.73px;top:881.86px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="892.47" data-fs="12.667">Research Tools:</span>
+    <span style="position:absolute;left:159.8px;top:881.86px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="892.47" data-fs="12.667">Figma, Miro, Mural, Dovetail, Maze, Qualtrics, SurveyMonkey, User Interviews, UserTesting, Pendo</span>
+    <span style="position:absolute;left:57.73px;top:901.46px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="912.07" data-fs="12.667">Agentic AI:</span>
+    <span style="position:absolute;left:128.04px;top:901.46px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="912.07" data-fs="12.667">Claude Code, Codex, GitHub Copilot, Microsoft Copilot, VS Code, Python (AI-assisted), agent orchestration</span>
+    <span style="position:absolute;left:57.73px;top:937.77px;line-height:1;white-space:nowrap;font-size:14.667px;font-weight:700" data-base="949.8" data-fs="14.667">EDUCATION</span>
+    <span style="position:absolute;left:57.73px;top:964.53px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="975.13" data-fs="12.667">PhD,</span>
+    <span style="position:absolute;left:90.11px;top:964.53px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="975.13" data-fs="12.667">Experimental Psychology | University of Arkansas, Fayetteville, AR | 05/2019</span>
+    <span style="position:absolute;left:57.73px;top:984.13px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="994.73" data-fs="12.667">MA,</span>
+    <span style="position:absolute;left:84.44px;top:984.13px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="994.73" data-fs="12.667">Experimental Psychology | University of Arkansas, Fayetteville, AR | 05/2016</span>
+    <span style="position:absolute;left:57.73px;top:1003.73px;line-height:1;white-space:nowrap;font-size:12.667px;font-weight:700" data-base="1014.33" data-fs="12.667">BM,</span>
+    <span style="position:absolute;left:84.44px;top:1003.73px;line-height:1;white-space:nowrap;font-size:12.667px" data-base="1014.33" data-fs="12.667">Psychology and Piano Performance | State University of New York at Potsdam, Potsdam, NY | 05/2013</span>
   </section>
           </div>
           </div>
@@ -688,8 +731,11 @@ html,body{margin:0;padding:0;background:#161826}
   </sc-if>
 
   <footer style="background:#12141f;border-top:1px solid rgba(233,233,237,.10)">
-    <div style="max-width:1180px;margin:0 auto;padding:{{ wsFooterTop }} clamp(24px,5vw,64px) {{ wsFooterBottom }}">
+    <div style="max-width:1180px;margin:0 auto;padding:{{ wsFooterTop }} clamp(24px,5vw,64px) {{ wsFooterBottom }};display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
       <p style="margin:0;font-size:11.5px;line-height:1.5;color:var(--tx-3);white-space:{{ footerWrap }}">Names, employers, identifying details, and proprietary data and insights are generalized or withheld to protect confidentiality.</p>
+      <sc-if value="{{ showFooterResume }}" hint-placeholder-val="{{ false }}">
+      <a href="#" onClick="{{ goResume }}" style="text-decoration:none;font-size:12px;font-weight:500;color:var(--acc);padding:12px 16px;width:110px;text-align:center;border:1px solid var(--acc-line);border-radius:8px;flex:none;margin-left:auto">Résumé</a>
+      </sc-if>
     </div>
   </footer>
 </div>
@@ -735,7 +781,7 @@ const STATS = [
     detail: 'Revenue reported by the business about two years after the usability test and the feature launch, for products my research informed. The attribution is the organization\u2019s, not a model I built, so I treat the figure as associated with the work rather than caused by it. It indicates the scale of the decisions the research fed, not a measured contribution.' },
   { value: '2.3x', label: 'throughput, 7 initiatives per quarter up from 3',
     detail: 'The multiple is 7 initiatives per quarter against my own prior rate of 3, counted as discrete research efforts owned end to end: full studies (e.g., surveys, unmoderated usability tests, and moderated exploratory studies), ongoing pulse research rounds shared with their own deliverables, and research reviews. The prior rate is my own baseline from the preceding period, before the AI-assisted workflow existed. Both sides of the comparison are counted the same way. The time gain arrives only after a system is built. Building the prompts, structure, and verification steps takes as long as the old way, sometimes longer. What changes is every study after that.' },
-  { value: '~5x', label: 'faster synthesis, down to roughly a day from a week',
+  { value: '~5x', label: 'faster synthesis, down to a day from a week',
     detail: 'Synthesis of an experiment\u2019s raw data, from roughly a week to a day, measured against my own prior pace on comparable studies. It is a before and after from one researcher rather than a controlled comparison. The figure covers synthesis only. Recruiting, fielding, crafting and presenting the deliverables, and leading follow-up team sessions have been accelerated too, but less dramatically, as they carry bigger dependencies on team alignment, review, and participant availability. The system had to be built first, and building it cost about what one fully manual synthesis costs. Once built, 1-day synthesis of similar studies is the norm.' }
 ];
 
@@ -982,6 +1028,19 @@ class Component extends DCLogic {
       this.nav(this._resumeFrom || 'home')();
     };
     window.addEventListener('keydown', this._onResumeEsc);
+    // The floating page arrows sit over the artifact, so they idle almost
+    // invisible, brighten while the pointer is on them, and retire entirely
+    // once the pointer has been still for a few seconds.
+    this._wakeChrome = () => {
+      if (!this.state.chromeAwake) this.setState({ chromeAwake: true });
+      clearTimeout(this._chromeT);
+      this._chromeT = setTimeout(() => {
+        if (this.state.navHover) return;
+        this.setState({ chromeAwake: false });
+      }, 3000);
+    };
+    window.addEventListener('mousemove', this._wakeChrome, { passive: true });
+    this._wakeChrome();
     this._onArtifactEsc = e => {
       if (e.key !== 'Escape' || !this.state.artifactFull) return;
       // Focus can sit on the site chrome (the reader clicked outside the frame).
@@ -1471,6 +1530,9 @@ class Component extends DCLogic {
     clearTimeout(this._escT1);
     clearTimeout(this._escT2);
     clearTimeout(this._hintTimer);
+    clearTimeout(this._chromeT);
+    clearTimeout(this._deckT1); clearTimeout(this._deckT2); clearTimeout(this._deckT3);
+    window.removeEventListener('mousemove', this._wakeChrome);
     this._mqNarrow.removeEventListener('change', this._onResize);
     this._mqMid.removeEventListener('change', this._onResize);
   }
@@ -1544,7 +1606,7 @@ class Component extends DCLogic {
       frame.setAttribute('src', artUrl(src));
       await new Promise(r => setTimeout(r, 60));
     }
-    if (frameLoaded(frame)) { frame.__artRoute = key; return; }
+    if (frameLoaded(frame)) { frame.__artRoute = key; this._armDeckDress(); return; }
     this._cache = this._cache || {};
     if (!this._cache[src]) {
       try {
@@ -1560,6 +1622,55 @@ class Component extends DCLogic {
     // srcdoc rather than document.write: written scripts do not reliably run.
     frame.__artRoute = key;
     frame.srcdoc = this._cache[src];
+    this._armDeckDress();
+  }
+
+  // The readout's deck toolbar lives in a shadow root inside the frame, so it
+  // cannot be styled from this page's CSS. Same-origin frame, so reach in:
+  // faint until the pointer is on it (matching the deck's own Contents pill),
+  // and a click on either half of a slide pages the deck with a mouse.
+  _dressDeckFrame() {
+    const fr = this._frame;
+    if (!fr) return false;
+    let doc = null;
+    try { doc = fr.contentDocument; } catch (e) { return false; }
+    if (!doc || !doc.body) return false;
+    const stage = doc.querySelector('deck-stage');
+    if (!stage || !stage.shadowRoot) return false;
+    const sr = stage.shadowRoot;
+    if (!sr.getElementById('rsg-deck-chrome')) {
+      const st = doc.createElement('style');
+      st.id = 'rsg-deck-chrome';
+      // !important: deck-stage's own rules live in an adopted stylesheet, which
+      // the spec orders after any <style> appended to the shadow root.
+      st.textContent = '.overlay[data-visible]{opacity:.32 !important}'
+        + '.overlay[data-visible]:hover,.overlay[data-visible]:focus-within{opacity:1 !important}';
+      sr.appendChild(st);
+    }
+    if (!doc.__rsgDeckClick) {
+      doc.__rsgDeckClick = true;
+      doc.addEventListener('click', e => {
+        if (e.defaultPrevented) return;
+        const path = e.composedPath ? e.composedPath() : [e.target];
+        for (const n of path) {
+          if (n === doc.body) break;
+          if (n.nodeType !== 1) continue;
+          if (n.matches && n.matches('a[href],button,input,select,textarea,summary,label,[role="button"],nav')) return;
+          if (n.classList && n.classList.contains('overlay')) return;
+        }
+        const key = e.clientX < fr.contentWindow.innerWidth / 2 ? 'ArrowLeft' : 'ArrowRight';
+        fr.contentWindow.dispatchEvent(new fr.contentWindow.KeyboardEvent('keydown', { key: key, bubbles: true }));
+      }, true);
+    }
+    return true;
+  }
+
+  _armDeckDress() {
+    clearTimeout(this._deckT1); clearTimeout(this._deckT2); clearTimeout(this._deckT3);
+    if (this._dressDeckFrame()) return;
+    this._deckT1 = setTimeout(() => this._dressDeckFrame(), 500);
+    this._deckT2 = setTimeout(() => this._dressDeckFrame(), 1500);
+    this._deckT3 = setTimeout(() => this._dressDeckFrame(), 3000);
   }
 
   // Escape inside the artifact. The frame holds focus after opening, so the
@@ -1834,17 +1945,23 @@ class Component extends DCLogic {
       navEnterPrev: () => { if (this.canHover()) this.setState({ navHover: 'prev' }); },
       navEnterNext: () => { if (this.canHover()) this.setState({ navHover: 'next' }); },
       navLeave: () => this.setState({ navHover: null }),
+      sideNavOpacity: this.state.navHover ? '1' : (this.state.chromeAwake === false ? '0' : '.34'),
       navPrevLabelStyle: this.navLabelStyle(this.state.navHover === 'prev', 'left'),
       navNextLabelStyle: this.navLabelStyle(this.state.navHover === 'next', 'right'),
       // Arrows move into the flow, under "All work", once the side gutters are
       // too tight to hold them.
-      topNavStyle: 'display:' + (rails ? 'none' : 'flex') + ';gap:10px;margin-top:18px;position:relative;z-index:5',
+      topNavStyle: 'display:' + (rails ? 'none' : 'flex') + ';gap:10px;margin-top:18px;position:relative;z-index:5'
+        + ';opacity:' + (this.state.navHover ? '1' : (this.state.chromeAwake === false ? '0' : '.34'))
+        + ';transition:opacity .45s cubic-bezier(.22,.7,.25,1)',
       topNavPrevLabelStyle: this.navTopLabelStyle(this.state.navHover === 'prev'),
       topNavNextLabelStyle: this.navTopLabelStyle(this.state.navHover === 'next'),
       topNavTailStyle: this.navTopTailStyle(),
       navPrevTailStyle: this.navTailStyle('left'),
       navNextTailStyle: this.navTailStyle('right'),
       isCase: route === 'case',
+      // The footer pill is the way back to the résumé from a work page; on the
+      // homepage the About rail already carries it, so it would be a duplicate.
+      showFooterResume: route !== 'home' && route !== 'resume',
       trustCards: TRUST.map((c, i) => {
         const on = this.state.openTrust === i;
         return {
@@ -1932,7 +2049,7 @@ class Component extends DCLogic {
       artifactCloseStyle: 'position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:11;'
         + 'display:flex;align-items:center;gap:8px;cursor:pointer;'
         + 'border:1px solid rgba(233,233,237,.34);border-top:0;border-radius:0 0 10px 10px;'
-        + 'background:rgba(0,0,0,.62);box-shadow:0 6px 22px rgba(0,0,0,.35);'
+        + 'background:#12141f;box-shadow:0 6px 22px rgba(0,0,0,.35);'
         + 'font-family:var(--b);font-size:' + (narrow ? '12px' : '11px') + ';letter-spacing:.06em;white-space:nowrap;'
         + 'color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8);transition:background .18s,border-color .18s;'
         + (narrow
