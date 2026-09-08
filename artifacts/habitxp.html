@@ -563,93 +563,105 @@
       color: white;
     }
     
-    /* Bottom Nav - Floating Icons */
+    /* Bottom Nav - one floating glass capsule (Liquid Glass).
+       Previously every tab carried its own blurred pill, which at phone width
+       left five 60px capsules pressed edge to edge with no breathing room and
+       five competing specular highlights. The glass now belongs to the BAR;
+       the tabs inside it are transparent until selected. */
     .bottom-nav {
       position: fixed;
-      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 100%;
-      max-width: 430px;
-      background: transparent;
-      border-top: none;
+      bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
+      width: calc(100% - 24px);
+      max-width: 406px;
       display: flex;
-      justify-content: space-around;
-      padding: 12px 0 20px;
+      align-items: stretch;
+      gap: 2px;
+      padding: 6px;
       z-index: 100;
+      border-radius: 30px;
+      isolation: isolate;
+
+      /* Lensing: a wide blur with saturation and brightness lifted, so whatever
+         scrolls underneath bleeds through as colour rather than as detail. */
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(28px) saturate(190%) brightness(1.08);
+      -webkit-backdrop-filter: blur(28px) saturate(190%) brightness(1.08);
+
+      /* Rim light plus the soft float shadow. The inset pair is what reads as
+         thickness: a bright top edge and a dim bottom one, like a lens. */
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.28) inset,
+        0 -1px 0 rgba(255, 255, 255, 0.06) inset,
+        0 10px 30px rgba(0, 0, 0, 0.38),
+        0 2px 10px rgba(0, 0, 0, 0.22);
     }
-    
-    /* WATER / RESIN EFFECT - Like looking through liquid */
+
+    /* Specular sheen across the top third, brightest at the centre. */
+    .bottom-nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 34%, transparent 62%),
+        radial-gradient(120% 90% at 50% -30%, rgba(255, 255, 255, 0.20), transparent 60%);
+      z-index: 0;
+    }
+
     .nav-item {
+      flex: 1 1 0;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
-      color: rgba(255, 255, 255, 0.95);
-      cursor: pointer;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      
-      /* Very transparent - see the warping */
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.2) 0%,
-        rgba(200, 230, 255, 0.1) 50%,
-        rgba(180, 210, 255, 0.08) 100%
-      );
-      
-      /* EXTREME BLUR = water/resin refraction distortion */
-      backdrop-filter: blur(80px) saturate(200%) brightness(1.15) contrast(1.05);
-      -webkit-backdrop-filter: blur(80px) saturate(200%) brightness(1.15) contrast(1.05);
-      
-      /* Smooth rounded like a water droplet */
+      justify-content: center;
+      gap: 3px;
+      padding: 8px 2px 7px;
       border-radius: 24px;
-      padding: 12px 18px;
-      
-      /* Subtle iridescent border */
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      
-      /* Soft glow like light through water */
-      box-shadow: 
-        0 4px 30px rgba(100, 180, 255, 0.15),
-        0 8px 50px rgba(0, 0, 0, 0.1),
-        inset 0 0 20px rgba(255, 255, 255, 0.05);
+      border: 1px solid transparent;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.62);
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      transition: color .22s ease, background .22s ease, border-color .22s ease, box-shadow .22s ease;
     }
-    
-    /* Static caustic light effect - like light through water */
-    .nav-item::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: 
-        radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 40%),
-        radial-gradient(ellipse at 70% 60%, rgba(200, 230, 255, 0.2) 0%, transparent 35%),
-        radial-gradient(ellipse at 50% 80%, rgba(180, 220, 255, 0.15) 0%, transparent 30%);
-      pointer-events: none;
+
+    .nav-item:hover { color: rgba(255, 255, 255, 0.85); }
+
+    /* The selected tab is a brighter lens sitting inside the bar's glass, not a
+       coloured fill: same material, more of it. */
+    .nav-item.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.22);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.34) inset,
+        0 6px 16px rgba(0, 0, 0, 0.22);
     }
-    
-    .nav-item:hover, .nav-item.active {
-      color: white;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.3) 0%,
-        rgba(180, 220, 255, 0.15) 50%,
-        rgba(160, 200, 255, 0.12) 100%
-      );
-      border-color: rgba(255, 255, 255, 0.4);
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 
-        0 8px 40px rgba(100, 180, 255, 0.25),
-        0 12px 60px rgba(0, 0, 0, 0.15),
-        inset 0 0 30px rgba(255, 255, 255, 0.1);
+
+    .nav-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
     }
-    
-    .nav-icon { font-size: 1.3rem; position: relative; z-index: 1; }
-    .nav-label { font-size: 0.65rem; font-weight: 500; position: relative; z-index: 1; }
+    .nav-label {
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.005em;
+      line-height: 1.1;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
+    }
     
     /* Level Badge */
     .level-badge-floating {
@@ -707,6 +719,15 @@
       width: 90%;
       max-width: 380px;
       padding: 24px;
+      /* The share sheet is taller than a short embed, and with no height cap it
+         overflowed the centred overlay in both directions with nothing to
+         scroll: the card's top and the buttons below it were unreachable. */
+      /* 48, not 32: the sheet slides in from translateY(20px), so a tighter
+         cap would overhang the bottom edge for the length of the animation. */
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
       transform: translateY(20px);
       transition: transform 0.3s;
     }
@@ -1396,39 +1417,27 @@
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
     [data-theme="light"] .bottom-nav {
-      background: transparent;
-      box-shadow: none;
+      background: rgba(255, 255, 255, 0.55);
+      border-color: rgba(0, 0, 0, 0.06);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 10px 30px rgba(0, 0, 0, 0.12),
+        0 2px 10px rgba(0, 0, 0, 0.06);
+    }
+    [data-theme="light"] .bottom-nav::before {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.18) 40%, transparent 66%);
     }
     [data-theme="light"] .nav-item {
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(220, 240, 255, 0.25) 50%,
-        rgba(200, 230, 255, 0.2) 100%
-      );
-      backdrop-filter: blur(80px) saturate(200%) brightness(1.1);
-      -webkit-backdrop-filter: blur(80px) saturate(200%) brightness(1.1);
-      border-color: rgba(255, 255, 255, 0.5);
-      color: rgba(0, 0, 0, 0.8);
-      box-shadow: 
-        0 4px 30px rgba(100, 180, 255, 0.2),
-        0 8px 50px rgba(0, 0, 0, 0.08);
+      background: transparent;
+      border-color: transparent;
+      color: rgba(15, 23, 42, 0.55);
+      box-shadow: none;
     }
-    [data-theme="light"] .nav-item:hover, [data-theme="light"] .nav-item.active {
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.5) 0%,
-        rgba(200, 230, 255, 0.35) 50%,
-        rgba(180, 220, 255, 0.3) 100%
-      );
-      border-color: rgba(255, 255, 255, 0.7);
-      color: var(--accent);
-      box-shadow: 
-        0 8px 40px rgba(100, 180, 255, 0.3),
-        0 12px 60px rgba(0, 0, 0, 0.1);
-    }
-    [data-theme="light"] .section-card {
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    [data-theme="light"] .nav-item.active {
+      color: #0f172a;
+      background: rgba(255, 255, 255, 0.85);
+      border-color: rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
     }
   </style>
 </head>
@@ -1777,7 +1786,7 @@
       </button>
       <button class="nav-item" onclick="showPage('badgesPage')" data-page="badgesPage">
         <span class="nav-icon">🏆</span>
-        <span class="nav-label">Achievements</span>
+        <span class="nav-label">Badges</span>
       </button>
       <button class="nav-item" onclick="showPage('settingsPage')" data-page="settingsPage">
         <span class="nav-icon">⚙️</span>
@@ -1891,30 +1900,95 @@
         return basePath + this.currentShareUrl;
       },
       
-      // Open preview dashboard in new tab.
+      // Opens the companion dashboard IN PLACE rather than in a new tab.
+      // window.open is unreliable here: the artifact always runs inside an
+      // iframe (preview and full experience alike), and a sandboxed frame has
+      // popups blocked, which is what produced the "browser blocked the new
+      // tab" dead end. An overlay works in every environment.
       previewDashboard() {
         if (!this.currentShareUrl && typeof data !== 'undefined') this.generateShareUrl(data);
         const qs = '?' + ((this.currentShareUrl || '').split('?')[1] || '');
-        // In the single-file build there is no sibling file to navigate to, so
-        // the parent hands over its inlined copy and the page is built here.
-        let inlined = null;
-        try { inlined = (window.parent && window.parent.__resources && window.parent.__resources.shareDash) || null; } catch (e) {}
-        let url;
-        if (inlined) {
-          const seeded = inlined.replace('<head>', '<head><script>window.__SHARE_QS=' + JSON.stringify(qs) + ';<\/script>');
-          url = URL.createObjectURL(new Blob([seeded], { type: 'text/html' }));
-        } else {
-          const href = window.location.href;
-          url = href.substring(0, href.lastIndexOf('/') + 1) + this.currentShareUrl;
+        let src = null;
+        try { src = (window.parent && window.parent.__resources && window.parent.__resources.shareDash) || null; } catch (e) {}
+        if (!src) {
+          const href = window.location.href.split('#')[0].split('?')[0];
+          src = href.substring(0, href.lastIndexOf('/') + 1) + 'shareable-dashboard.html';
         }
-        const w = window.open(url, '_blank', 'noopener');
         this.closeModal();
-        if (!w && window.showWithheld) {
-          window.showWithheld('Shareable dashboard',
-            'A read-only dashboard carrying the encoded progress data, so a teammate can view your streaks without an account. Your browser blocked the new tab; allow pop-ups for this page and try again.');
+        this.closeDashboard();
+
+        // "modal-shade open" is the hook the surrounding portfolio checks
+        // before letting Escape exit the full experience, so the first press
+        // closes this viewer instead of ejecting the reader from the artifact.
+        const ov = document.createElement('div');
+        ov.id = 'dashViewer';
+        ov.className = 'modal-shade open';
+        ov.setAttribute('role', 'dialog');
+        ov.setAttribute('aria-modal', 'true');
+        ov.setAttribute('aria-label', 'Shareable dashboard');
+        ov.style.cssText = 'position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;' +
+          // No fade: the rAF that would raise opacity is throttled inside a
+          // background iframe, which left the overlay permanently invisible.
+          'background:#0f172a';
+
+        const bar = document.createElement('div');
+        // Close sits at the LEFT of the bar: the portfolio's own "exit full
+        // experience" button occupies the top-right corner, and two × buttons
+        // stacked in the same spot is a coin toss for the reader.
+        bar.style.cssText = 'flex:none;display:flex;align-items:center;justify-content:flex-start;gap:12px;' +
+          'padding:calc(env(safe-area-inset-top, 0px) + 10px) 14px 10px;background:#0b1220;' +
+          'border-bottom:1px solid rgba(255,255,255,.10)';
+        const title = document.createElement('span');
+        title.textContent = 'Shareable dashboard';
+        title.style.cssText = 'font-size:.9rem;font-weight:600;color:#e2e8f0;letter-spacing:.01em';
+        const close = document.createElement('button');
+        close.type = 'button';
+        close.setAttribute('aria-label', 'Close shareable dashboard');
+        close.textContent = '\u00d7';
+        close.style.cssText = 'flex:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.16);' +
+          'background:rgba(255,255,255,.06);color:#e2e8f0;font-size:22px;line-height:1;cursor:pointer';
+        close.addEventListener('click', () => this.closeDashboard());
+        bar.appendChild(close);
+        bar.appendChild(title);
+
+        const frame = document.createElement('iframe');
+        frame.title = 'Shareable dashboard';
+        frame.style.cssText = 'flex:1 1 auto;width:100%;border:0;background:#0f172a';
+
+        const note = document.createElement('div');
+        note.style.cssText = 'flex:none;padding:14px;color:#94a3b8;font-size:.85rem;line-height:1.5';
+        note.textContent = 'Loading the dashboard\u2026';
+
+        ov.appendChild(bar);
+        ov.appendChild(note);
+        document.body.appendChild(ov);
+
+        this._dashEsc = (e) => { if (e.key === 'Escape') this.closeDashboard(); };
+        document.addEventListener('keydown', this._dashEsc);
+
+        fetch(src).then(r => {
+          if (!r.ok) throw new Error(r.status);
+          return r.text();
+        }).then(html => {
+          if (!/<html/i.test(html)) throw new Error('not html');
+          // The page reads its payload from the query string; a srcdoc frame has
+          // none, so the same value is handed over on window before it parses.
+          frame.srcdoc = html.replace('<head>', '<head><script>window.__SHARE_QS=' + JSON.stringify(qs) + ';<\/script>');
+          ov.replaceChild(frame, note);
+        }).catch(() => {
+          note.textContent = 'The companion dashboard page is not reachable from this build. It opens from the published site and from the downloadable file.';
+        });
+      },
+
+      closeDashboard() {
+        const ov = document.getElementById('dashViewer');
+        if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
+        if (this._dashEsc) {
+          document.removeEventListener('keydown', this._dashEsc);
+          this._dashEsc = null;
         }
       },
-      
+
       // Share message templates - Easy to customize!
       templates: {
         progress: (d) => {
@@ -3627,6 +3701,34 @@
     if(document.querySelector('.wh-overlay.open,.op-backdrop.open,.pres-backdrop.open,.onepager-backdrop.open,.about-drawer.open'))return;
     a.click();
   });
+})();
+</script>
+<script>
+// The bottom nav is fixed and its height varies with the viewport (101px in a
+// short embed against the 80px of padding the body reserved), so the last
+// stretch of every page sat underneath it and could not be scrolled into view.
+// Same for the fixed header at the top. Both are measured and reserved for.
+(function () {
+  function pad() {
+    var nav = document.querySelector('.bottom-nav');
+    var head = document.querySelector('.header');
+    var b = document.body;
+    if (!b) return;
+    if (nav) {
+      var nh = nav.getBoundingClientRect().height;
+      if (nh > 0) b.style.paddingBottom = Math.round(nh + 24) + 'px';
+    }
+    if (head && getComputedStyle(head).position === 'fixed') {
+      var hh = head.getBoundingClientRect().height;
+      if (hh > 0) b.style.paddingTop = Math.round(hh) + 'px';
+    }
+  }
+  window.addEventListener('resize', pad);
+  window.addEventListener('orientationchange', pad);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', pad);
+  else pad();
+  setTimeout(pad, 300);
+  setTimeout(pad, 1200);
 })();
 </script>
 </body>
