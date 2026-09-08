@@ -361,6 +361,16 @@ header{border-bottom:0!important}
 .evidence-list{display:grid;gap:11px}.evidence-list>div{display:grid;grid-template-columns:118px minmax(0,1fr);gap:10px}.evidence-list b{color:var(--navy);font-size:12px}.evidence-list span{color:var(--muted);font-size:12px;line-height:1.4}
 .drawer-actions{display:grid;gap:8px}.drawer-actions button{padding:9px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);font:700 12px Aptos,"Segoe UI",Arial,sans-serif;text-align:left}.drawer-actions button:hover{background:var(--goldsoft);border-color:var(--gold)}.drawer-actions .primary{background:var(--navy);color:#fff;border-color:var(--navy)}
 .standards-overlay{display:none;position:fixed;inset:0;z-index:9500;background:rgba(20,28,75,.78);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:18px}
+.wh-overlay{position:fixed;inset:0;z-index:9800;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(20,28,75,.5);backdrop-filter:blur(3px)}
+.wh-overlay.open{display:flex}
+.wh-card{width:min(470px,100%);background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.28);padding:26px 28px 22px}
+.wh-eye{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.wh-title{margin:9px 0 0;font-size:21px;line-height:1.2;font-weight:700;color:var(--navy)}
+.wh-desc{margin:10px 0 0;font-size:14.5px;line-height:1.6;color:var(--ink)}
+.wh-note{margin:16px 0 0;padding:13px 15px;background:var(--soft);border-radius:9px;font-size:13px;line-height:1.6;color:var(--muted)}
+.wh-actions{display:flex;justify-content:flex-end;margin-top:19px}
+.wh-btn{appearance:none;border:1px solid var(--navy);background:var(--navy);color:#fff;font-family:inherit;font-size:14px;padding:9px 20px;border-radius:8px;cursor:pointer}
+.wh-btn:hover{background:var(--blue);border-color:var(--blue)}
 .standards-overlay.open{display:flex}
 .standards-modal-card{width:min(1400px,calc(100vw - 56px));height:min(900px,calc(100vh - 36px));background:var(--paper);border:12px solid #eae6dc;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.4);overflow:hidden;display:grid;grid-template-rows:auto minmax(0,1fr)}
 .standards-modal-head{background:var(--navy);color:#fff;padding:18px 28px 16px;border-bottom:4px solid var(--gold);box-shadow:none;border-radius:0}.standards-modal-head::before,.standards-modal-head::after{display:none}.standards-modal-head span{font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.55)}.standards-modal-head h2{margin:3px 0;color:#fff;font-size:28px}.standards-modal-head p{margin:0;color:rgba(255,255,255,.72)}
@@ -954,15 +964,15 @@ document.querySelectorAll('.journey,.rec-toggle').forEach(b=>b.addEventListener(
     const url=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'})),a=document.createElement('a');
     a.href=url;a.download='Modeling_Misclick_Changes_Across_the_Roadmap_Fully_Expanded.pdf';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);toast('Fully expanded PDF downloaded');
   }
-  byId('printArtifact').addEventListener('click',downloadExpandedPdf);
-  byId('downloadArtifact').addEventListener('click',()=>{const blob=new Blob(['<!doctype html>\n'+document.documentElement.outerHTML],{type:'text/html'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Modeling_Misclick_Changes_Across_the_Roadmap.html';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('HTML downloaded')});
+  byId('printArtifact').addEventListener('click',function(){window.showWithheld('Fully expanded PDF','A print-ready PDF with every recommendation and its evidence expanded. It carries the study\u2019s underlying figures, so it is not published with the portfolio.')});
+  byId('downloadArtifact').addEventListener('click',function(){window.showWithheld('Artifact file (.html)','The self-contained copy of this model, including its data and projections. It is not published with the portfolio because the underlying study data belongs to the employer.')});
   function downloadStandardsPng(){
     const base64=document.getElementById('standardsPngPayload').textContent.trim(),binary=atob(base64),bytes=new Uint8Array(binary.length);
     for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
     const url=URL.createObjectURL(new Blob([bytes],{type:'image/png'})),a=document.createElement('a');
     a.href=url;a.download='Industry_Standards_Benchmark_View_Fully_Expanded.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);toast('Fully expanded Industry Standards PNG downloaded');
   }
-  byId('downloadStandards').addEventListener('click',downloadStandardsPng);
+  byId('downloadStandards').addEventListener('click',function(){window.showWithheld('Benchmark view (.png)','The full industry-standards comparison as an image, sized for a deck. It is not published with the portfolio because it reproduces the study\u2019s benchmarked figures.')});
   addEventListener('resize',()=>{if(overlay.classList.contains('open')){fitStandards();alignStandardsChrome();}});
 
   document.querySelectorAll('.benchmark-details').forEach(d=>d.addEventListener('toggle',()=>{
@@ -992,4 +1002,22 @@ document.querySelectorAll('.journey,.rec-toggle').forEach(b=>b.addEventListener(
  track.addEventListener('blur',()=>tip.classList.remove('show'));
  track.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();const s=current(),v=s&&level?s.total:0;const delta=e.key==='ArrowRight'?15:-15;const nv=Math.max(0,Math.min(1501,v+delta));const r=track.getBoundingClientRect();showAt(r.left+r.width*(nv/1501),r.top,nv);});
 })();
-</script></body></html>
+</script><div class="wh-overlay" id="whOverlay" role="dialog" aria-modal="true" aria-labelledby="whTitle">
+<div class="wh-card">
+<div class="wh-eye">Export withheld</div>
+<h2 class="wh-title" id="whTitle">Export withheld</h2>
+<p class="wh-desc" id="whDesc"></p>
+<p class="wh-note">This artifact is shown in a portfolio. The underlying study data belongs to the employer and stays on their internal systems, so exports are intentionally not published here. The button is left in place so the artifact behaves exactly as it did in use.</p>
+<div class="wh-actions"><button class="wh-btn" id="whClose" type="button">Close</button></div>
+</div></div>
+<script>
+(function(){var ov=document.getElementById('whOverlay');if(!ov)return;
+ var t=document.getElementById('whTitle'),d=document.getElementById('whDesc');
+ function close(){ov.classList.remove('open')}
+ window.showWithheld=function(title,desc){t.textContent=title;d.textContent=desc;ov.classList.add('open')};
+ document.getElementById('whClose').addEventListener('click',close);
+ ov.addEventListener('click',function(e){if(e.target===ov)close()});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('open')){e.stopPropagation();close();}},true);
+})();
+</script>
+</body></html>
